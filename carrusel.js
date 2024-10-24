@@ -1,7 +1,7 @@
 import { carruselData } from "./carruselData.js";
 import { firstLetterUppercase } from "./stringFormatter.js";
 
-const slideTrack = document.querySelector(".slide__track");
+const slideTrack = document.querySelectorAll(".slide__track");
 
 const slideTemplate = (data) => `
   <div class="slide">
@@ -15,4 +15,7 @@ const slideTemplate = (data) => `
 const carruselCards = [...carruselData, ...carruselData]
   .map((data) => slideTemplate(data))
   .join("");
-slideTrack.insertAdjacentHTML("beforeend", carruselCards);
+
+slideTrack.forEach((track) => {
+  track.insertAdjacentHTML("beforeend", carruselCards);
+})

@@ -1,5 +1,5 @@
 :root {
-  --animation-duration: 10s;
+  --animation-duration: 15s;
 }
 
 * {
@@ -16,15 +16,27 @@ body {
   background-color: rgb(246, 244, 235);
 }
 
-.slider {
-  width: 50%;
-  margin: auto;
+.slider__container {
+  width: 100%;
   height: auto;
   overflow: hidden;
-  position: relative;
+  padding: 3rem 0;
+  
 }
 
-.slider::before {
+.slider {
+  width: 100%;
+  margin: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  transform: rotate(-10deg);
+}
+
+.slider__container::before {
   content: "";
   position: absolute;
   left: 0;
@@ -39,7 +51,7 @@ body {
   );
 }
 
-.slider::after {
+.slider__container::after {
   content: "";
   position: absolute;
   width: 150px;
@@ -59,13 +71,19 @@ body {
   display: flex;
   gap: 1.5rem;
   justify-content: space-around;
-  padding: 3rem 0;
   height: auto;
   width: calc(7.5rem * 14);
   align-items: center;
   justify-content: flex-end;
-  animation: scroll var(--animation-duration) linear infinite;
+  animation: scroll var(--animation-duration) linear infinite alternate;
   box-sizing: border-box;
+}
+
+.slide__track:nth-child(2) {
+  animation-direction: reverse;
+}
+.slide__track:nth-child(3) {
+  animation-direction: normal;
 }
 
 .slide__track:has(> .slide:hover) {
@@ -89,11 +107,16 @@ body {
 
 .slide:hover {
   background: #ffffff;
-  transform: scale(1.1) rotate(10deg);
+  transform: scale(1) rotate(10deg);
+  margin-top: 1rem;
+}
+.slide:hover img {
+  filter: grayscale(0);
 }
 
 .slide img {
   object-fit: contain;
+  filter: grayscale(100%);
   width: 5rem;
 }
 
@@ -111,7 +134,7 @@ body {
 }
 
 .slide:hover .tag {
-  transform: translateY(-4.2rem);
+  transform: translateY(50px);
   opacity: 1;
 }
 
